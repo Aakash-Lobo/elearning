@@ -4,11 +4,9 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.google.gms.google-services")
 }
-
 android {
     namespace = "com.example.elearning"
     compileSdk = 35
-
     defaultConfig {
         applicationId = "com.example.elearning"
         minSdk = 24
@@ -18,7 +16,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -38,10 +35,22 @@ android {
     buildFeatures {
         compose = true
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/DEPENDENCIES"
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/LICENSE"
+            excludes += "/META-INF/LICENSE.txt"
+            excludes += "/META-INF/license.txt"
+            excludes += "/META-INF/NOTICE"
+            excludes += "/META-INF/NOTICE.txt"
+            excludes += "/META-INF/notice.txt"
+            excludes += "/META-INF/ASL2.0"
+            excludes += "META-INF/*.kotlin_module"
+        }
+    }
 }
-
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -53,7 +62,6 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.firebase.functions.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -61,37 +69,30 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
-    implementation (libs.firebase.auth.ktx)
-    implementation (libs.firebase.firestore.ktx)
+    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-storage-ktx")
+    implementation("com.google.firebase:firebase-functions-ktx")
+    implementation("com.google.firebase:firebase-common-ktx")
     implementation(libs.ui)
     implementation(libs.androidx.material)
     implementation(libs.ui.tooling.preview)
-    implementation(libs.androidx.lifecycle.runtime.ktx.v287)
-    implementation(libs.androidx.activity.compose.v1101)
-    implementation(libs.firebase.storage.ktx)
-    implementation(libs.material3)
-    implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.androidx.material.v178)
-    implementation(libs.ui.tooling.preview)
-    implementation (libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.coil.compose)
-
-    implementation (libs.material)
-
-    implementation (libs.google.firebase.auth.ktx)
-    implementation (libs.google.firebase.firestore.ktx)
-    implementation (libs.material3)
-    implementation(libs.coil.compose)
-    implementation (libs.androidx.ui.text)
-    implementation (libs.androidx.material.v178)
-    implementation ("com.google.api-client:google-api-client-android:1.35.0")
-    implementation ("com.google.oauth-client:google-oauth-client-android:1.35.0")
-    implementation ("com.google.http-client:google-http-client-gson:1.39.2")
-    implementation ("com.google.apis:google-api-services-gmail:v1-rev305-1.25.0")
-// Check the latest BOM version
-    implementation ("com.google.android.gms:play-services-auth:20.0.1")
-
+    implementation(libs.material)
+    implementation(libs.androidx.ui.text)
+    implementation("com.google.api-client:google-api-client-android:2.0.0")
+    implementation("com.google.oauth-client:google-oauth-client-jetty:1.34.1")
+    implementation("com.google.apis:google-api-services-gmail:v1-rev20220404-2.0.0")
+    implementation("com.google.android.gms:play-services-auth:20.0.1")
+    implementation("androidx.media3:media3-exoplayer:1.1.1")
+    implementation("androidx.media3:media3-ui:1.1.1")
+    implementation("androidx.media3:media3-common:1.1.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
+    implementation("androidx.media:media:1.6.0")
+    implementation("androidx.compose.material:material-icons-extended:1.6.0")
 }
